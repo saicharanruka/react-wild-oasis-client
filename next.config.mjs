@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "cvpmzukpvtoiuwvvdxtw.supabase.co",
+				pathname: "/storage/v1/object/public/**",
+			},
+		],
+	},
+};
 
-export default nextConfig; // eslint-disable-line no-unused-vars
-// jsconfig.json
+export default nextConfig;

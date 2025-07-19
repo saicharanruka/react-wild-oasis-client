@@ -4,26 +4,24 @@ import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-	{
-		files: ["**/*.{js,mjs,cjs,jsx}"],
-		plugins: { js },
-		extends: ["js/recommended"],
-	},
-	{
-		files: ["**/*.{js,mjs,cjs,jsx}"],
-		languageOptions: { globals: globals.browser },
-	},
+	// Base JS recommended config
+	js.configs.recommended,
+
+	// React recommended config (flat version)
 	pluginReact.configs.flat.recommended,
 
-	// ✅ Add this extra config block for custom rules
 	{
+		files: ["**/*.{js,mjs,cjs,jsx}"],
+		languageOptions: {
+			globals: {
+				...globals.browser,
+				...globals.node, // ✅ replaces `env: { node: true }`
+			},
+		},
 		rules: {
 			"react/prop-types": "off",
 			"react/react-in-jsx-scope": "off",
 			"react/jsx-uses-react": "off",
-		},
-		env: {
-			node: true,
 		},
 	},
 ]);

@@ -50,6 +50,7 @@ export default async function updateGuest(formData) {
 }
 
 export async function deleteReservation(bookingId) {
+	await new Promise((res) => setTimeout(res, 3000)); //delay
 	const guestBookingIds = await getCurrentGuestBookingIds();
 
 	if (!guestBookingIds.includes(bookingId)) {
